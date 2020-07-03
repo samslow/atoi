@@ -245,6 +245,9 @@ const Button = styled.button`
   background-color: transparent;
   width: 40px;
   height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:focus {
     outline: none;
