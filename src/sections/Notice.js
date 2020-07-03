@@ -67,7 +67,7 @@ const ContentsBox = styled.div`
   margin: 0 5%;
   padding: 5% 10%;
   overflow-y: scroll;
-  height: 50vh;
+  height: 40vh;
 `;
 
 const Sentence = styled.span`
