@@ -56,7 +56,7 @@ const StoryBox = styled.textarea`
   font-size: 13px;
   line-height: 20px;
   width: 90%;
-  height: 40vh;
+  height: 30vh;
   border: 3px #f4e0d0 solid;
   padding: 2%;
   border-radius: 10px;
