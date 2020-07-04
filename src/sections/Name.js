@@ -4,7 +4,7 @@ import styled from "styled-components";
 import ProgressBox from "../components/ProgressBox";
 import { TextBox, Title, P } from "./Intro";
 
-const Name = () => {
+const Name = ({ value, onChange }) => {
   return (
     <Container>
       <ProgressBox index={"01"} percent={20} />
@@ -16,7 +16,13 @@ const Name = () => {
         </TextBox>
       </Title>
       <InputBox>
-        <Content type="text" placeholder={"이름을 입력 해 주세요"} />
+        <Content
+          type="text"
+          placeholder={"이름을 입력 해 주세요"}
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+          required
+        />
       </InputBox>
     </Container>
   );

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import ProgressBox from "../components/ProgressBox";
 
-const Story = () => {
+const Story = ({ value, onChange }) => {
   return (
     <Container>
       <ProgressBox index={"02"} percent={40} />
@@ -15,7 +15,12 @@ const Story = () => {
         </TextBox>
       </Title>
       <ContentsBox>
-        <StoryBox placeholder={"이야기를 입력 해 주세요"} />
+        <StoryBox
+          placeholder={"이야기를 입력 해 주세요"}
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+          required
+        />
       </ContentsBox>
     </Container>
   );

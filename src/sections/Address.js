@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import ProgressBox from "../components/ProgressBox";
 
-const Adress = () => {
+const Address = ({ value, onChange }) => {
   return (
     <Container>
       <ProgressBox index={"04"} percent={80} />
@@ -18,6 +18,8 @@ const Adress = () => {
         <Content
           type="text"
           placeholder={"우편을 받을 주소를 입력 해 주세요"}
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
         />
       </ContentsBox>
     </Container>
@@ -67,4 +69,4 @@ const Content = styled.input`
   }
 `;
 
-export default Adress;
+export default Address;

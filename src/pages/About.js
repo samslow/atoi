@@ -8,7 +8,7 @@ import Notice from "../sections/Notice";
 import Name from "../sections/Name";
 import Story from "../sections/Story";
 import PhoneNumber from "../sections/PhoneNumber";
-import Adress from "../sections/Adress";
+import Address from "../sections/Address";
 import Account from "../sections/Account";
 import Outro from "../sections/Outro";
 
@@ -18,11 +18,20 @@ const About = () => {
   const nameScreen = useRef();
   const storyScreen = useRef();
   const numberScreen = useRef();
-  const adressScreen = useRef();
+  const addressScreen = useRef();
   const accountScreen = useRef();
   const outroScreen = useRef();
 
   const [introMsg, setIntroMsg] = useState("");
+  const [noticeMsg, setNoticeMsg] = useState("");
+  const [noticeTitle, setNoticeTitle] = useState("");
+  const [outroMsg, setOutroMsg] = useState("");
+
+  const [name, setName] = useState("");
+  const [story, setStory] = useState("");
+  const [phoneNum, setPhoneNum] = useState("");
+  const [address, setAddress] = useState("");
+  const [account, setAccount] = useState("");
 
   const bindScrollSnap = () => {
     const element = ContainerRef.current;
@@ -34,35 +43,40 @@ const About = () => {
     snapElement.bind();
   };
 
+  const fetchDocs = async (type) => {
+    const msg = await firestore
+      .collection(type)
+      .get()
+      .then((res) => {
+        const arr = [];
+        res.docs.forEach((msg) => {
+          arr.push(msg.data().contents);
+        });
+
+        return arr;
+      });
+    const sentence = msg[0].split("//").map((line, index) => (
+      <span key={index}>
+        {line}
+        <br />
+      </span>
+    ));
+
+    return sentence;
+  };
+
   useEffect(() => {
     bindScrollSnap();
-    const fetchIntroMsg = async () => {
-      const msg = await firestore
-        .collection("Intro")
-        .get()
-        .then((res) => {
-          const arr = [];
-          res.docs.forEach((msg) => {
-            arr.push(msg.data().contents);
-          });
 
-          return arr;
-        });
-      const sentence = msg[0].split("//").map((line, index) => (
-        <span key={index}>
-          {line}
-          <br />
-        </span>
-      ));
-      console.log(sentence);
-      setIntroMsg(sentence);
-    };
-    fetchIntroMsg();
+    fetchDocs("Intro").then((text) => setIntroMsg(text));
+    fetchDocs("NoticeTitle").then((text) => setNoticeTitle(text));
+    fetchDocs("Notice").then((text) => setNoticeMsg(text));
+    fetchDocs("Outro").then((text) => setOutroMsg(text));
   }, []);
 
   return (
     <Container ref={ContainerRef}>
-      <Section>
+      {/* <Section>
         <Intro msg={introMsg} />
         <Buttons>
           <Button
@@ -82,7 +96,7 @@ const About = () => {
         </Buttons>
       </Section>
       <Section ref={noticeScreen}>
-        <Notice />
+        <Notice title={noticeTitle} msg={noticeMsg} />
         <Buttons>
           <Button
             onClick={() =>
@@ -113,9 +127,9 @@ const About = () => {
             />
           </Button>
         </Buttons>
-      </Section>
+      </Section> */}
       <Section ref={nameScreen}>
-        <Name />
+        <Name value={name} onChange={setName} />
         <Buttons>
           <Button
             onClick={() =>
@@ -138,17 +152,19 @@ const About = () => {
                 behavior: "smooth",
               })
             }
+            disabled={!name.length}
           >
             <img
               alt={"Down"}
               src={require("../assets/images/downArrow.png")}
               width={20}
+              style={{ opacity: name.length ? "100%" : "40%" }}
             />
           </Button>
         </Buttons>
       </Section>
       <Section ref={storyScreen}>
-        <Story />
+        <Story value={story} onChange={setStory} />
         <Buttons>
           <Button
             onClick={() =>
@@ -171,17 +187,19 @@ const About = () => {
                 behavior: "smooth",
               })
             }
+            disabled={!story.length}
           >
             <img
               alt={"Down"}
               src={require("../assets/images/downArrow.png")}
               width={20}
+              style={{ opacity: story.length ? "100%" : "40%" }}
             />
           </Button>
         </Buttons>
       </Section>
       <Section ref={numberScreen}>
-        <PhoneNumber />
+        <PhoneNumber value={phoneNum} onChange={setPhoneNum} />
         <Buttons>
           <Button
             onClick={() =>
@@ -200,21 +218,23 @@ const About = () => {
           <Button
             onClick={() =>
               ContainerRef.current.scrollTo({
-                top: adressScreen.current.offsetTop,
+                top: addressScreen.current.offsetTop,
                 behavior: "smooth",
               })
             }
+            disabled={!phoneNum.length}
           >
             <img
               alt={"Down"}
               src={require("../assets/images/downArrow.png")}
               width={20}
+              style={{ opacity: phoneNum.length ? "100%" : "40%" }}
             />
           </Button>
         </Buttons>
       </Section>
-      <Section ref={adressScreen}>
-        <Adress />
+      <Section ref={addressScreen}>
+        <Address value={address} onChange={setAddress} />
         <Buttons>
           <Button
             onClick={() =>
@@ -237,22 +257,24 @@ const About = () => {
                 behavior: "smooth",
               })
             }
+            disabled={!address.length}
           >
             <img
               alt={"Down"}
               src={require("../assets/images/downArrow.png")}
               width={20}
+              style={{ opacity: address.length ? "100%" : "40%" }}
             />
           </Button>
         </Buttons>
       </Section>
       <Section ref={accountScreen}>
-        <Account />
+        <Account value={account} onChange={setAccount} />
         <Buttons>
           <Button
             onClick={() =>
               ContainerRef.current.scrollTo({
-                top: adressScreen.current.offsetTop,
+                top: addressScreen.current.offsetTop,
                 behavior: "smooth",
               })
             }
@@ -264,23 +286,32 @@ const About = () => {
             />
           </Button>
           <Button
-            onClick={() =>
-              ContainerRef.current.scrollTo({
-                top: outroScreen.current.offsetTop,
-                behavior: "smooth",
-              })
-            }
+            onClick={() => {
+              if (name && story && phoneNum && address && account) {
+                alert("확인");
+                ContainerRef.current.scrollTo({
+                  top: outroScreen.current.offsetTop,
+                  behavior: "smooth",
+                });
+              } else {
+                alert(
+                  "아직 완성되지 않은 칸이 있습니다.\n위로 돌아가 모두 채워주세요.",
+                );
+              }
+            }}
+            disabled={!account.length}
           >
             <img
               alt={"Down"}
               src={require("../assets/images/downArrow.png")}
               width={20}
+              style={{ opacity: account.length ? "100%" : "40%" }}
             />
           </Button>
         </Buttons>
       </Section>
       <Section ref={outroScreen}>
-        <Outro />
+        <Outro msg={outroMsg} />
       </Section>
     </Container>
   );
@@ -315,6 +346,7 @@ const Buttons = styled.div`
 const Button = styled.button`
   border-radius: 0;
   border: #000 1px solid;
+  opacity: ${(props) => (props.disabled ? "40%" : "100%")};
   background-color: transparent;
   width: 40px;
   height: 40px;

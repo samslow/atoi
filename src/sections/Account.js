@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import ProgressBox from "../components/ProgressBox";
 
-const Account = () => {
+const Account = ({ value, onChange }) => {
   return (
     <Container>
       <ProgressBox index={"05"} percent={100} />
@@ -14,7 +14,12 @@ const Account = () => {
         </TextBox>
       </Title>
       <ContentsBox>
-        <Content type="text" placeholder={"입금자명을 입력 해 주세요"} />
+        <Content
+          type="text"
+          placeholder={"입금자명을 입력 해 주세요"}
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+        />
       </ContentsBox>
     </Container>
   );

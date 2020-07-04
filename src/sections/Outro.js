@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Outro = () => {
+const Outro = ({ msg }) => {
   return (
     <Container>
       <Title>
@@ -24,21 +24,7 @@ const Outro = () => {
         </ImageBox>
       </Title>
       <ContentsBox>
-        <Sentence>
-          신청 확정 및 우편 발송 안내는 적어주신
-          <br />
-          핸드폰 번호로 문자드립니다.
-        </Sentence>
-        <br />
-        <br />
-        <Sentence>
-          써주신 글을 소중히 읽고, 따듯한 온기를 담은
-          <br />
-          편지 답장으로 찾아 뵙겠습니다.
-        </Sentence>
-        <br />
-        <br />
-        <Sentence>아투와 올림.</Sentence>
+        <Sentence>{msg}</Sentence>
       </ContentsBox>
     </Container>
   );
