@@ -6,7 +6,7 @@ import ProgressBox from "../components/ProgressBox";
 const Account = () => {
   return (
     <Container>
-      <ProgressBox index={"04"} percent={80} />
+      <ProgressBox index={"05"} percent={100} />
       <Title>
         <TextBox>
           <P>입금자명을</P>

@@ -6,7 +6,7 @@ import ProgressBox from "../components/ProgressBox";
 const Adress = () => {
   return (
     <Container>
-      <ProgressBox index={"03"} percent={60} />
+      <ProgressBox index={"04"} percent={80} />
       <Title>
         <TextBox>
           <P>당신의</P>
