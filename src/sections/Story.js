@@ -16,7 +16,7 @@ const Story = ({ value, onChange }) => {
       </Title>
       <ContentsBox>
         <StoryBox
-          placeholder={"이야기를 입력 해 주세요"}
+          placeholder={"이야기를 입력해 주세요"}
           value={value}
           onChange={(event) => onChange(event.target.value)}
           required

@@ -17,7 +17,7 @@ const PhoneNumber = ({ value, onChange }) => {
       <ContentsBox>
         <Content
           type="number"
-          placeholder={"핸드폰 번호를 입력 해 주세요"}
+          placeholder={"핸드폰 번호를 입력해 주세요"}
           value={value}
           onChange={(event) => onChange(event.target.value)}
           required

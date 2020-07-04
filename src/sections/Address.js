@@ -17,7 +17,7 @@ const Address = ({ value, onChange }) => {
       <ContentsBox>
         <Content
           type="text"
-          placeholder={"우편을 받을 주소를 입력 해 주세요"}
+          placeholder={"우편을 받을 주소를 입력해 주세요"}
           value={value}
           onChange={(event) => onChange(event.target.value)}
         />

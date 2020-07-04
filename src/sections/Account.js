@@ -16,7 +16,7 @@ const Account = ({ value, onChange }) => {
       <ContentsBox>
         <Content
           type="text"
-          placeholder={"입금자명을 입력 해 주세요"}
+          placeholder={"입금자명을 입력해 주세요"}
           value={value}
           onChange={(event) => onChange(event.target.value)}
         />
