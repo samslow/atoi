@@ -47,7 +47,7 @@ const Outro = () => {
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  padding-top: 75px;
+  padding-top: 70px;
 `;
 
 const TextBox = styled.div`

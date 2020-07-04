@@ -44,7 +44,7 @@ const Notice = () => {
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  padding-top: 75px;
+  padding-top: 70px;
 `;
 
 const TextBox = styled.div`
@@ -67,7 +67,7 @@ const ContentsBox = styled.div`
   margin: 0 5%;
   padding: 5% 10%;
   overflow-y: scroll;
-  height: 40vh;
+  height: 30vh;
 `;
 
 const Sentence = styled.span`

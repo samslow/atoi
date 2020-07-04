@@ -15,7 +15,7 @@ const Story = () => {
         </TextBox>
       </Title>
       <ContentsBox>
-        <StoryBox />
+        <StoryBox placeholder={"이야기를 입력 해 주세요"} />
       </ContentsBox>
     </Container>
   );
@@ -44,7 +44,7 @@ const P = styled.p`
 
 const ContentsBox = styled.div`
   margin: 0 5%;
-  padding: 5% 0;
+  padding: 10px 0;
   overflow-y: scroll;
   overflow: hidden;
   display: flex;

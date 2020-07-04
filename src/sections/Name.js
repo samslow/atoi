@@ -55,7 +55,7 @@ const Content = styled.input`
   background-color: transparent;
   border: none;
   border-bottom: 2px #000 solid;
-  padding: 5% 0;
+  padding: 10px 0;
 
   &:focus {
     outline: none;

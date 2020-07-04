@@ -43,6 +43,7 @@ const P = styled.p`
 `;
 
 const ContentsBox = styled.div`
+  height: 25vh;
   margin: 0 5%;
   padding: 5% 0 5% 10%;
   overflow-y: scroll;
@@ -55,8 +56,8 @@ const Content = styled.input`
   background-color: transparent;
   border: none;
   border-bottom: 2px #000 solid;
-  padding: 5% 0;
   border-radius: 0;
+  padding: 10px 0;
 
   &:focus {
     outline: none;

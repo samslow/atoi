@@ -38,7 +38,7 @@ const Unavailable = () => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: 75px;
+  padding-top: 70px;
   width: 100%;
   height: 100%;
 `;
