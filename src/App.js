@@ -1,11 +1,14 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import ReactGA from "react-ga";
 
 import About from "./pages/About";
 import Unavailable from "./pages/Unavailable";
 
 const App = () => {
+  ReactGA.initialize("G-SJJJVQ4LMY");
+
   return (
     <Router>
       <GlobalStyle />
