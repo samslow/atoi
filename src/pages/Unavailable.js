@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
+import { fetchDocs } from "./About";
+
 const Unavailable = () => {
+  const [finishMsg, setFinishMsg] = useState("");
+
+  useEffect(() => {
+    fetchDocs("Finish").then((text) => setFinishMsg(text));
+  }, []);
   return (
     <Container>
       <Section>
@@ -13,22 +20,7 @@ const Unavailable = () => {
           </TextBox>
         </Title>
         <ContentsBox>
-          <Sentence>
-            7월 둘째 주의 아투와 편지 답장 서비스
-            <br />
-            신청이 마감되었습니다.
-          </Sentence>
-          <br />
-          <br />
-          <Sentence>
-            아투와 편지 답장 서비스는 매주 월요일부터
-            <br />
-            일요일까지 다섯 분의 신청자를 선착순으로 받고있으며, <br />
-            매주 월요일 00시 00분에 새로운 신청이 열립니다.
-          </Sentence>
-          <br />
-          <br />
-          <Sentence>아투와 올림.</Sentence>
+          <Sentence>{finishMsg}</Sentence>
         </ContentsBox>
       </Section>
     </Container>
