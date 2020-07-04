@@ -12,6 +12,7 @@ const Outro = () => {
         </TextBox>
         <ImageBox>
           <img
+            alt={"WritingHand"}
             src={require("../assets/images/writingHand.png")}
             style={{
               width: "40%",

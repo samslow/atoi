@@ -52,7 +52,11 @@ const About = () => {
               })
             }
           >
-            <img src={require("../assets/images/downArrow.png")} width={20} />
+            <img
+              alt={"Down"}
+              src={require("../assets/images/downArrow.png")}
+              width={20}
+            />
           </Button>
         </Buttons>
       </Section>
@@ -67,7 +71,11 @@ const About = () => {
               })
             }
           >
-            <img src={require("../assets/images/upArrow.png")} width={20} />
+            <img
+              alt={"Up"}
+              src={require("../assets/images/upArrow.png")}
+              width={20}
+            />
           </Button>
           <Button
             onClick={() =>
@@ -77,7 +85,11 @@ const About = () => {
               })
             }
           >
-            <img src={require("../assets/images/downArrow.png")} width={20} />
+            <img
+              alt={"Down"}
+              src={require("../assets/images/downArrow.png")}
+              width={20}
+            />
           </Button>
         </Buttons>
       </Section>
@@ -92,7 +104,11 @@ const About = () => {
               })
             }
           >
-            <img src={require("../assets/images/upArrow.png")} width={20} />
+            <img
+              alt={"Up"}
+              src={require("../assets/images/upArrow.png")}
+              width={20}
+            />
           </Button>
           <Button
             onClick={() =>
@@ -102,7 +118,11 @@ const About = () => {
               })
             }
           >
-            <img src={require("../assets/images/downArrow.png")} width={20} />
+            <img
+              alt={"Down"}
+              src={require("../assets/images/downArrow.png")}
+              width={20}
+            />
           </Button>
         </Buttons>
       </Section>
@@ -117,7 +137,11 @@ const About = () => {
               })
             }
           >
-            <img src={require("../assets/images/upArrow.png")} width={20} />
+            <img
+              alt={"Up"}
+              src={require("../assets/images/upArrow.png")}
+              width={20}
+            />
           </Button>
           <Button
             onClick={() =>
@@ -127,7 +151,11 @@ const About = () => {
               })
             }
           >
-            <img src={require("../assets/images/downArrow.png")} width={20} />
+            <img
+              alt={"Down"}
+              src={require("../assets/images/downArrow.png")}
+              width={20}
+            />
           </Button>
         </Buttons>
       </Section>
@@ -142,7 +170,11 @@ const About = () => {
               })
             }
           >
-            <img src={require("../assets/images/upArrow.png")} width={20} />
+            <img
+              alt={"Up"}
+              src={require("../assets/images/upArrow.png")}
+              width={20}
+            />
           </Button>
           <Button
             onClick={() =>
@@ -152,7 +184,11 @@ const About = () => {
               })
             }
           >
-            <img src={require("../assets/images/downArrow.png")} width={20} />
+            <img
+              alt={"Down"}
+              src={require("../assets/images/downArrow.png")}
+              width={20}
+            />
           </Button>
         </Buttons>
       </Section>
@@ -167,7 +203,11 @@ const About = () => {
               })
             }
           >
-            <img src={require("../assets/images/upArrow.png")} width={20} />
+            <img
+              alt={"Up"}
+              src={require("../assets/images/upArrow.png")}
+              width={20}
+            />
           </Button>
           <Button
             onClick={() =>
@@ -177,7 +217,11 @@ const About = () => {
               })
             }
           >
-            <img src={require("../assets/images/downArrow.png")} width={20} />
+            <img
+              alt={"Down"}
+              src={require("../assets/images/downArrow.png")}
+              width={20}
+            />
           </Button>
         </Buttons>
       </Section>
@@ -192,7 +236,11 @@ const About = () => {
               })
             }
           >
-            <img src={require("../assets/images/upArrow.png")} width={20} />
+            <img
+              alt={"Up"}
+              src={require("../assets/images/upArrow.png")}
+              width={20}
+            />
           </Button>
           <Button
             onClick={() =>
@@ -202,7 +250,11 @@ const About = () => {
               })
             }
           >
-            <img src={require("../assets/images/downArrow.png")} width={20} />
+            <img
+              alt={"Down"}
+              src={require("../assets/images/downArrow.png")}
+              width={20}
+            />
           </Button>
         </Buttons>
       </Section>
@@ -257,7 +309,7 @@ const Button = styled.button`
   }
 
   & + & {
-    margin-left: 5%;
+    border-left: none;
   }
 `;
 

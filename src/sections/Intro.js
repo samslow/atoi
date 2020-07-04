@@ -12,6 +12,7 @@ const Intro = () => {
         </TextBox>
         <ImageBox>
           <img
+            alt={"WrigintHand"}
             src={require("../assets/images/writingHand.png")}
             style={{
               width: "40%",
