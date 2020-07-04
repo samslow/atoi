@@ -13,6 +13,28 @@ import Address from "../sections/Address";
 import Account from "../sections/Account";
 import Outro from "../sections/Outro";
 
+export const fetchDocs = async (type) => {
+  const msg = await firestore
+    .collection(type)
+    .get()
+    .then((res) => {
+      const arr = [];
+      res.docs.forEach((msg) => {
+        arr.push(msg.data().contents);
+      });
+
+      return arr;
+    });
+  const sentence = msg[0].split("//").map((line, index) => (
+    <span key={index}>
+      {line}
+      <br />
+    </span>
+  ));
+
+  return sentence;
+};
+
 const About = () => {
   const history = useHistory();
   const ContainerRef = useRef();
@@ -44,28 +66,6 @@ const About = () => {
     });
 
     snapElement.bind();
-  };
-
-  const fetchDocs = async (type) => {
-    const msg = await firestore
-      .collection(type)
-      .get()
-      .then((res) => {
-        const arr = [];
-        res.docs.forEach((msg) => {
-          arr.push(msg.data().contents);
-        });
-
-        return arr;
-      });
-    const sentence = msg[0].split("//").map((line, index) => (
-      <span key={index}>
-        {line}
-        <br />
-      </span>
-    ));
-
-    return sentence;
   };
 
   const submitLetter = () => {
@@ -119,7 +119,7 @@ const About = () => {
         history.push("/finish");
       }
     });
-  }, []);
+  }, [history]);
 
   return (
     <Container ref={ContainerRef}>
