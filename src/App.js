@@ -18,7 +18,6 @@ const App = () => {
 const GlobalStyle = createGlobalStyle`
   body {
     background-color: #faf3ed;
-    font-family: "JejuMyeongjoOTF";
   }
 `;
 
