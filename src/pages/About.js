@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import styled from "styled-components";
 import ScrollSnap from "scroll-snap";
 import firestore from "../firebase";
+import { useHistory } from "react-router-dom";
 
 import Intro from "../sections/Intro";
 import Notice from "../sections/Notice";
@@ -13,6 +14,7 @@ import Account from "../sections/Account";
 import Outro from "../sections/Outro";
 
 const About = () => {
+  const history = useHistory();
   const ContainerRef = useRef();
   const noticeScreen = useRef();
   const nameScreen = useRef();
@@ -66,18 +68,62 @@ const About = () => {
     return sentence;
   };
 
-  useEffect(() => {
-    bindScrollSnap();
+  const submitLetter = () => {
+    if (
+      window.confirm("정말 제출하시겠어요?\n제출된 내용은 수정 할 수 없어요!")
+    ) {
+      if (name && story && phoneNum && address && account) {
+        firestore
+          .collection("Letter")
+          .add({
+            name,
+            story,
+            phone: phoneNum,
+            address,
+            account,
+          })
+          .then(() => {
+            setIsFinish(true);
+            ContainerRef.current.scrollTo({
+              top: outroScreen.current.offsetTop,
+              behavior: "smooth",
+            });
+          });
+      } else {
+        alert(
+          "아직 완성되지 않은 칸이 있습니다.\n위로 돌아가 모두 채워주세요.",
+        );
+      }
+    }
+  };
 
-    fetchDocs("Intro").then((text) => setIntroMsg(text));
-    fetchDocs("NoticeTitle").then((text) => setNoticeTitle(text));
-    fetchDocs("Notice").then((text) => setNoticeMsg(text));
-    fetchDocs("Outro").then((text) => setOutroMsg(text));
+  const available = async () => {
+    return await firestore
+      .collection("Letter")
+      .get()
+      .then((res) => {
+        return res.size >= 5 ? false : true;
+      });
+  };
+
+  useEffect(() => {
+    available().then((isRedirect) => {
+      if (isRedirect) {
+        bindScrollSnap();
+
+        fetchDocs("Intro").then((text) => setIntroMsg(text));
+        fetchDocs("NoticeTitle").then((text) => setNoticeTitle(text));
+        fetchDocs("Notice").then((text) => setNoticeMsg(text));
+        fetchDocs("Outro").then((text) => setOutroMsg(text));
+      } else {
+        history.push("/finish");
+      }
+    });
   }, []);
 
   return (
     <Container ref={ContainerRef}>
-      {!isFinish && (
+      {!isFinish ? (
         <>
           <Section>
             <Intro msg={introMsg} />
@@ -288,28 +334,7 @@ const About = () => {
                   width={20}
                 />
               </Button>
-              <Button
-                onClick={() => {
-                  if (
-                    window.confirm(
-                      "정말 제출하시겠어요?\n제출된 내용은 수정 할 수 없어요!",
-                    )
-                  ) {
-                    if (name && story && phoneNum && address && account) {
-                      setIsFinish(true);
-                      ContainerRef.current.scrollTo({
-                        top: outroScreen.current.offsetTop,
-                        behavior: "smooth",
-                      });
-                    } else {
-                      alert(
-                        "아직 완성되지 않은 칸이 있습니다.\n위로 돌아가 모두 채워주세요.",
-                      );
-                    }
-                  }
-                }}
-                disabled={!account.length}
-              >
+              <Button onClick={submitLetter} disabled={!account.length}>
                 <img
                   alt={"Down"}
                   src={require("../assets/images/downArrow.png")}
@@ -320,10 +345,11 @@ const About = () => {
             </Buttons>
           </Section>
         </>
+      ) : (
+        <Section ref={outroScreen}>
+          <Outro msg={outroMsg} />
+        </Section>
       )}
-      <Section ref={outroScreen}>
-        <Outro msg={outroMsg} />
-      </Section>
     </Container>
   );
 };
