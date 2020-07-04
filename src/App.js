@@ -1,7 +1,6 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import firestore from "./firebase";
 
 import About from "./pages/About";
 import Unavailable from "./pages/Unavailable";

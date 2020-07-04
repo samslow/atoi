@@ -1,6 +1,7 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import styled from "styled-components";
 import ScrollSnap from "scroll-snap";
+import firestore from "../firebase";
 
 import Intro from "../sections/Intro";
 import Notice from "../sections/Notice";
@@ -21,9 +22,7 @@ const About = () => {
   const accountScreen = useRef();
   const outroScreen = useRef();
 
-  const callback = () => {
-    console.log("snapped");
-  };
+  const [introMsg, setIntroMsg] = useState("");
 
   const bindScrollSnap = () => {
     const element = ContainerRef.current;
@@ -32,17 +31,39 @@ const About = () => {
       timeout: 0,
     });
 
-    snapElement.bind(callback);
+    snapElement.bind();
   };
 
   useEffect(() => {
     bindScrollSnap();
-  });
+    const fetchIntroMsg = async () => {
+      const msg = await firestore
+        .collection("Intro")
+        .get()
+        .then((res) => {
+          const arr = [];
+          res.docs.forEach((msg) => {
+            arr.push(msg.data().contents);
+          });
+
+          return arr;
+        });
+      const sentence = msg[0].split("//").map((line, index) => (
+        <span key={index}>
+          {line}
+          <br />
+        </span>
+      ));
+      console.log(sentence);
+      setIntroMsg(sentence);
+    };
+    fetchIntroMsg();
+  }, []);
 
   return (
     <Container ref={ContainerRef}>
       <Section>
-        <Intro />
+        <Intro msg={introMsg} />
         <Buttons>
           <Button
             onClick={() =>
