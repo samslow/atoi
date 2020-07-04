@@ -53,13 +53,14 @@ const ContentsBox = styled.div`
 `;
 
 const StoryBox = styled.textarea`
-  font-size: 13px;
+  background-color: transparent;
+  font-size: 20px;
   line-height: 20px;
   width: 90%;
-  height: 30vh;
-  border: 3px #f4e0d0 solid;
+  height: 20vh;
+  border: none;
   padding: 2%;
-  border-radius: 10px;
+  border-radius: 0;
   resize: none;
 
   &:focus {
