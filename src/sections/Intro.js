@@ -37,6 +37,7 @@ export const Container = styled.div`
 `;
 
 export const TextBox = styled.div`
+  width: 100%;
   padding-left: 5%;
 `;
 
