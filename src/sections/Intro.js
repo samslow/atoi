@@ -58,6 +58,7 @@ export const Sentence = styled.span`
   font-size: 13px;
   line-height: 20px;
 `;
-const ImageBox = styled.div``;
+
+export const ImageBox = styled.div``;
 
 export default Intro;

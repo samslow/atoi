@@ -1,5 +1,14 @@
 import React from "react";
-import styled from "styled-components";
+
+import {
+  Container,
+  TextBox,
+  Title,
+  P,
+  ContentsBox,
+  Sentence,
+  ImageBox,
+} from "./Intro";
 
 const Outro = ({ msg }) => {
   return (
@@ -29,36 +38,5 @@ const Outro = ({ msg }) => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  padding-top: 70px;
-`;
-
-const TextBox = styled.div`
-  padding-left: 5%;
-`;
-
-const ImageBox = styled.div``;
-
-const Title = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const P = styled.p`
-  margin: 10px 0;
-  font-size: 60px;
-`;
-
-const ContentsBox = styled.div`
-  padding: 5% 15%;
-`;
-
-const Sentence = styled.span`
-  font-size: 13px;
-  line-height: 20px;
-`;
 
 export default Outro;
