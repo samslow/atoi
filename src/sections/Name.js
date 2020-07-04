@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import ProgressBox from "../components/ProgressBox";
+import { TextBox, Title, P } from "./Intro";
 
 const Name = () => {
   return (
@@ -14,9 +15,9 @@ const Name = () => {
           <P>알려주세요</P>
         </TextBox>
       </Title>
-      <ContentsBox>
+      <InputBox>
         <Content type="text" placeholder={"이름을 입력 해 주세요"} />
-      </ContentsBox>
+      </InputBox>
     </Container>
   );
 };
@@ -25,36 +26,19 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
 `;
-
-const TextBox = styled.div`
-  padding-left: 5%;
-  flex-direction: row;
-  flex: 1;
-`;
-
-const Title = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const P = styled.p`
-  margin: 10px 0;
-  font-size: 60px;
-`;
-
-const ContentsBox = styled.div`
+const InputBox = styled.div`
   margin: 5%;
   padding: 5% 0 5% 10%;
   overflow-y: scroll;
   overflow: hidden;
 `;
-
 const Content = styled.input`
   width: 100%;
   font-size: 20px;
   background-color: transparent;
   border: none;
   border-bottom: 2px #000 solid;
+  border-radius: 0;
   padding: 10px 0;
 
   &:focus {

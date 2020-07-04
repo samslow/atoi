@@ -53,11 +53,12 @@ const ContentsBox = styled.div`
 `;
 
 const StoryBox = styled.textarea`
+  font-family: "JejuMyeongjo";
   background-color: transparent;
   font-size: 20px;
   line-height: 20px;
   width: 90%;
-  height: 20vh;
+  height: 25vh;
   border: none;
   padding: 2%;
   border-radius: 0;

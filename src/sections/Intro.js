@@ -38,35 +38,34 @@ const Intro = () => {
   );
 };
 
-const Container = styled.div`
+export const Container = styled.div`
   width: 100%;
   height: 100%;
   padding-top: 70px;
 `;
 
-const TextBox = styled.div`
+export const TextBox = styled.div`
   padding-left: 5%;
 `;
 
-const ImageBox = styled.div``;
-
-const Title = styled.div`
+export const Title = styled.div`
   display: flex;
-  flex-direction: row;
 `;
 
-const P = styled.p`
+export const P = styled.p`
   margin: 10px 0;
   font-size: 60px;
 `;
 
-const ContentsBox = styled.div`
+export const ContentsBox = styled.div`
   padding: 5% 15%;
+  height: 30vh;
 `;
 
-const Sentence = styled.span`
+export const Sentence = styled.span`
   font-size: 13px;
   line-height: 20px;
 `;
+const ImageBox = styled.div``;
 
 export default Intro;
