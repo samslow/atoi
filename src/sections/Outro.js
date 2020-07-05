@@ -1,4 +1,5 @@
 import React from "react";
+import { isMobile } from "react-device-detect";
 
 import {
   Container,
@@ -19,19 +20,36 @@ const Outro = ({ msg }) => {
           <P>주셔서</P>
           <P>감사합니다</P>
         </TextBox>
-        <ImageBox>
-          <img
-            alt={"WritingHand"}
-            src={require("../assets/images/writingHand.png")}
-            style={{
-              width: "40%",
-              maxWidth: "200px",
-              position: "absolute",
-              marginTop: "5%",
-              right: 0,
-            }}
-          />
-        </ImageBox>
+        {isMobile ? (
+          <ImageBox>
+            <img
+              alt={"WrigintHand"}
+              src={require("../assets/images/writingHand.png")}
+              style={{
+                width: "40%",
+                maxWidth: "200px",
+                position: "absolute",
+                marginTop: "5%",
+                right: 0,
+              }}
+            />
+          </ImageBox>
+        ) : (
+          <ImageBox>
+            <img
+              alt={"WritingHand"}
+              src={require("../assets/images/writingHand.png")}
+              style={{
+                width: "40%",
+                maxWidth: "600px",
+                position: "absolute",
+                marginTop: "5%",
+                right: "15%",
+                bottom: "15%",
+              }}
+            />
+          </ImageBox>
+        )}
       </Title>
       <ContentsBox>
         <Sentence>{msg}</Sentence>
