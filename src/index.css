@@ -1,7 +1,3 @@
-/* @font-face {
-  src: url(./assets/fonts/JejuMyeongjoOTF.otf) format("openType");
-  font-family: "JejuMyeongjo";
-} */
 @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
 .jejumyeongjo * {
   font-family: "Jeju Myeongjo", serif;
