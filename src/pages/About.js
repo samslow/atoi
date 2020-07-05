@@ -117,7 +117,7 @@ const About = () => {
       .collection("Letter")
       .get()
       .then((res) => {
-        return res.size >= 5 ? false : true;
+        return res.size >= 6 ? false : true;
       });
   };
 
