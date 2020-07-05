@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { isMobile } from "react-device-detect";
 
 import { fetchDocs } from "./About";
 
@@ -61,7 +62,7 @@ const ContentsBox = styled.div`
 `;
 
 const Sentence = styled.span`
-  font-size: 13px;
+  font-size: ${isMobile ? "13" : "18"}px;
   line-height: 20px;
 `;
 

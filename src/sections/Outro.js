@@ -44,7 +44,7 @@ const Outro = ({ msg }) => {
                 maxWidth: "600px",
                 position: "absolute",
                 marginTop: "5%",
-                right: "15%",
+                right: 0,
                 bottom: "15%",
               }}
             />

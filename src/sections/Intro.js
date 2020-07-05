@@ -32,11 +32,11 @@ const Intro = ({ msg }) => {
               src={require("../assets/images/writingHand.png")}
               style={{
                 width: "40%",
-                maxWidth: "600px",
+                maxWidth: "500px",
                 position: "absolute",
                 marginTop: "5%",
-                right: "15%",
-                bottom: "15%",
+                right: 0,
+                bottom: "25%",
               }}
             />
           </ImageBox>
@@ -75,7 +75,7 @@ export const ContentsBox = styled.div`
 `;
 
 export const Sentence = styled.span`
-  font-size: 13px;
+  font-size: ${isMobile ? "13" : "18"}px;
   line-height: 20px;
 `;
 
