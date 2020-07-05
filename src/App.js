@@ -7,7 +7,7 @@ import About from "./pages/About";
 import Unavailable from "./pages/Unavailable";
 
 const App = () => {
-  ReactGA.initialize("G-SJJJVQ4LMY");
+  ReactGA.initialize("UA-129588106-2");
 
   return (
     <Router>
