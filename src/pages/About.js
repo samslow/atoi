@@ -126,10 +126,10 @@ const About = () => {
     if (next === 0) {
       nextStation = 0;
     } else {
-      nextStation = next;
+      nextStation = next.current.offsetTop;
     }
     ContainerRef.current.scrollTo({
-      top: nextStation.current.offsetTop,
+      top: nextStation,
       behavior: "smooth",
     });
   };
