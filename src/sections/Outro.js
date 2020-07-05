@@ -41,7 +41,7 @@ const Outro = ({ msg }) => {
               src={require("../assets/images/writingHand.png")}
               style={{
                 width: "40%",
-                maxWidth: "600px",
+                maxWidth: "400px",
                 position: "absolute",
                 marginTop: "5%",
                 right: 0,
