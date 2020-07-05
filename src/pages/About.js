@@ -58,6 +58,21 @@ const About = () => {
   const [account, setAccount] = useState("");
   const [isFinish, setIsFinish] = useState(false);
 
+  useEffect(() => {
+    available().then((isRedirect) => {
+      if (isRedirect) {
+        bindScrollSnap();
+
+        fetchDocs("Intro").then((text) => setIntroMsg(text));
+        fetchDocs("NoticeTitle").then((text) => setNoticeTitle(text));
+        fetchDocs("Notice").then((text) => setNoticeMsg(text));
+        fetchDocs("Outro").then((text) => setOutroMsg(text));
+      } else {
+        history.push("/finish");
+      }
+    });
+  }, [history]);
+
   const bindScrollSnap = () => {
     const element = ContainerRef.current;
     const snapElement = new ScrollSnap(element, {
@@ -106,20 +121,18 @@ const About = () => {
       });
   };
 
-  useEffect(() => {
-    available().then((isRedirect) => {
-      if (isRedirect) {
-        bindScrollSnap();
-
-        fetchDocs("Intro").then((text) => setIntroMsg(text));
-        fetchDocs("NoticeTitle").then((text) => setNoticeTitle(text));
-        fetchDocs("Notice").then((text) => setNoticeMsg(text));
-        fetchDocs("Outro").then((text) => setOutroMsg(text));
-      } else {
-        history.push("/finish");
-      }
+  const toScroll = (next) => {
+    let nextStation;
+    if (next === 0) {
+      nextStation = 0;
+    } else {
+      nextStation = next;
+    }
+    ContainerRef.current.scrollTo({
+      top: nextStation.current.offsetTop,
+      behavior: "smooth",
     });
-  }, [history]);
+  };
 
   return (
     <Container ref={ContainerRef}>
@@ -128,14 +141,7 @@ const About = () => {
           <Section>
             <Intro msg={introMsg} />
             <Buttons>
-              <Button
-                onClick={() =>
-                  ContainerRef.current.scrollTo({
-                    top: noticeScreen.current.offsetTop,
-                    behavior: "smooth",
-                  })
-                }
-              >
+              <Button onClick={() => toScroll(noticeScreen)}>
                 <img
                   alt={"Down"}
                   src={require("../assets/images/downArrow.png")}
@@ -147,28 +153,14 @@ const About = () => {
           <Section ref={noticeScreen}>
             <Notice title={noticeTitle} msg={noticeMsg} />
             <Buttons>
-              <Button
-                onClick={() =>
-                  ContainerRef.current.scrollTo({
-                    top: 0,
-                    behavior: "smooth",
-                  })
-                }
-              >
+              <Button onClick={() => toScroll(0)}>
                 <img
                   alt={"Up"}
                   src={require("../assets/images/upArrow.png")}
                   width={20}
                 />
               </Button>
-              <Button
-                onClick={() =>
-                  ContainerRef.current.scrollTo({
-                    top: nameScreen.current.offsetTop,
-                    behavior: "smooth",
-                  })
-                }
-              >
+              <Button onClick={() => toScroll(nameScreen)}>
                 <img
                   alt={"Down"}
                   src={require("../assets/images/downArrow.png")}
@@ -178,16 +170,13 @@ const About = () => {
             </Buttons>
           </Section>
           <Section ref={nameScreen}>
-            <Name value={name} onChange={setName} />
+            <Name
+              value={name}
+              onChange={setName}
+              onSubmit={() => toScroll(storyScreen)}
+            />
             <Buttons>
-              <Button
-                onClick={() =>
-                  ContainerRef.current.scrollTo({
-                    top: noticeScreen.current.offsetTop,
-                    behavior: "smooth",
-                  })
-                }
-              >
+              <Button onClick={() => toScroll(noticeScreen)}>
                 <img
                   alt={"Up"}
                   src={require("../assets/images/upArrow.png")}
@@ -195,12 +184,7 @@ const About = () => {
                 />
               </Button>
               <Button
-                onClick={() =>
-                  ContainerRef.current.scrollTo({
-                    top: storyScreen.current.offsetTop,
-                    behavior: "smooth",
-                  })
-                }
+                onClick={() => toScroll(storyScreen)}
                 disabled={!name.length}
               >
                 <img
@@ -212,138 +196,111 @@ const About = () => {
               </Button>
             </Buttons>
           </Section>
-          <Section ref={storyScreen}>
-            <Story value={story} onChange={setStory} />
-            <Buttons>
-              <Button
-                onClick={() =>
-                  ContainerRef.current.scrollTo({
-                    top: nameScreen.current.offsetTop,
-                    behavior: "smooth",
-                  })
-                }
-              >
-                <img
-                  alt={"Up"}
-                  src={require("../assets/images/upArrow.png")}
-                  width={20}
-                />
-              </Button>
-              <Button
-                onClick={() =>
-                  ContainerRef.current.scrollTo({
-                    top: numberScreen.current.offsetTop,
-                    behavior: "smooth",
-                  })
-                }
-                disabled={!story.length}
-              >
-                <img
-                  alt={"Down"}
-                  src={require("../assets/images/downArrow.png")}
-                  width={20}
-                  style={{ opacity: story.length ? "100%" : "40%" }}
-                />
-              </Button>
-            </Buttons>
-          </Section>
-          <Section ref={numberScreen}>
-            <PhoneNumber value={phoneNum} onChange={setPhoneNum} />
-            <Buttons>
-              <Button
-                onClick={() =>
-                  ContainerRef.current.scrollTo({
-                    top: storyScreen.current.offsetTop,
-                    behavior: "smooth",
-                  })
-                }
-              >
-                <img
-                  alt={"Up"}
-                  src={require("../assets/images/upArrow.png")}
-                  width={20}
-                />
-              </Button>
-              <Button
-                onClick={() =>
-                  ContainerRef.current.scrollTo({
-                    top: addressScreen.current.offsetTop,
-                    behavior: "smooth",
-                  })
-                }
-                disabled={!phoneNum.length}
-              >
-                <img
-                  alt={"Down"}
-                  src={require("../assets/images/downArrow.png")}
-                  width={20}
-                  style={{ opacity: phoneNum.length ? "100%" : "40%" }}
-                />
-              </Button>
-            </Buttons>
-          </Section>
-          <Section ref={addressScreen}>
-            <Address value={address} onChange={setAddress} />
-            <Buttons>
-              <Button
-                onClick={() =>
-                  ContainerRef.current.scrollTo({
-                    top: numberScreen.current.offsetTop,
-                    behavior: "smooth",
-                  })
-                }
-              >
-                <img
-                  alt={"Up"}
-                  src={require("../assets/images/upArrow.png")}
-                  width={20}
-                />
-              </Button>
-              <Button
-                onClick={() =>
-                  ContainerRef.current.scrollTo({
-                    top: accountScreen.current.offsetTop,
-                    behavior: "smooth",
-                  })
-                }
-                disabled={!address.length}
-              >
-                <img
-                  alt={"Down"}
-                  src={require("../assets/images/downArrow.png")}
-                  width={20}
-                  style={{ opacity: address.length ? "100%" : "40%" }}
-                />
-              </Button>
-            </Buttons>
-          </Section>
-          <Section ref={accountScreen}>
-            <Account value={account} onChange={setAccount} />
-            <Buttons>
-              <Button
-                onClick={() =>
-                  ContainerRef.current.scrollTo({
-                    top: addressScreen.current.offsetTop,
-                    behavior: "smooth",
-                  })
-                }
-              >
-                <img
-                  alt={"Up"}
-                  src={require("../assets/images/upArrow.png")}
-                  width={20}
-                />
-              </Button>
-              <Button onClick={submitLetter} disabled={!account.length}>
-                <img
-                  alt={"Down"}
-                  src={require("../assets/images/downArrow.png")}
-                  width={20}
-                  style={{ opacity: account.length ? "100%" : "40%" }}
-                />
-              </Button>
-            </Buttons>
-          </Section>
+          {name && (
+            <Section ref={storyScreen}>
+              <Story
+                value={story}
+                onChange={setStory}
+                onSubmit={() => toScroll(numberScreen)}
+              />
+              <Buttons>
+                <Button onClick={() => toScroll(nameScreen)}>
+                  <img
+                    alt={"Up"}
+                    src={require("../assets/images/upArrow.png")}
+                    width={20}
+                  />
+                </Button>
+                <Button
+                  onClick={() => toScroll(numberScreen)}
+                  disabled={!story.length}
+                >
+                  <img
+                    alt={"Down"}
+                    src={require("../assets/images/downArrow.png")}
+                    width={20}
+                    style={{ opacity: story.length ? "100%" : "40%" }}
+                  />
+                </Button>
+              </Buttons>
+            </Section>
+          )}
+          {story && (
+            <Section ref={numberScreen}>
+              <PhoneNumber value={phoneNum} onChange={setPhoneNum} />
+              <Buttons>
+                <Button onClick={() => toScroll(storyScreen)}>
+                  <img
+                    alt={"Up"}
+                    src={require("../assets/images/upArrow.png")}
+                    width={20}
+                  />
+                </Button>
+                <Button
+                  onClick={() => toScroll(addressScreen)}
+                  disabled={!phoneNum.length}
+                >
+                  <img
+                    alt={"Down"}
+                    src={require("../assets/images/downArrow.png")}
+                    width={20}
+                    style={{ opacity: phoneNum.length ? "100%" : "40%" }}
+                  />
+                </Button>
+              </Buttons>
+            </Section>
+          )}
+          {phoneNum && (
+            <Section ref={addressScreen}>
+              <Address
+                value={address}
+                onChange={setAddress}
+                onSubmit={() => toScroll(accountScreen)}
+              />
+              <Buttons>
+                <Button onClick={() => toScroll(numberScreen)}>
+                  <img
+                    alt={"Up"}
+                    src={require("../assets/images/upArrow.png")}
+                    width={20}
+                  />
+                </Button>
+                <Button
+                  onClick={() => toScroll(accountScreen)}
+                  disabled={!address.length}
+                >
+                  <img
+                    alt={"Down"}
+                    src={require("../assets/images/downArrow.png")}
+                    width={20}
+                    style={{ opacity: address.length ? "100%" : "40%" }}
+                  />
+                </Button>
+              </Buttons>
+            </Section>
+          )}
+          {address && (
+            <Section ref={accountScreen}>
+              <Account value={account} onChange={setAccount} />
+              <Buttons>
+                <Button onClick={() => toScroll(addressScreen)}>
+                  <img
+                    alt={"Up"}
+                    src={require("../assets/images/upArrow.png")}
+                    width={20}
+                  />
+                </Button>
+                <Button onClick={submitLetter} disabled={!account.length}>
+                  <img
+                    alt={"Down"}
+                    src={require("../assets/images/downArrow.png")}
+                    width={20}
+                    style={{ opacity: account.length ? "100%" : "40%" }}
+                  />
+                </Button>
+              </Buttons>
+            </Section>
+          )}
         </>
       ) : (
         <Section ref={outroScreen}>
