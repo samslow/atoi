@@ -76,7 +76,7 @@ export const ContentsBox = styled.div`
 
 export const Sentence = styled.span`
   font-size: ${isMobile ? "13" : "18"}px;
-  line-height: 20px;
+  line-height: 30px;
 `;
 
 export const ImageBox = styled.div``;
