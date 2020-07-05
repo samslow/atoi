@@ -2,6 +2,8 @@ import firebase from "firebase/app";
 import "firebase/analytics";
 import "firebase/firestore";
 
+console.log("process.env.PROJECT_ID", process.env.PROJECT_ID);
+
 const config = {
   apiKey: process.env.API_KEY,
   authDomain: process.env.AUTH_DOMAIN,
