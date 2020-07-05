@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "dotenv": "^8.2.0",
     "firebase": "^7.15.5",
     "react": "^16.13.1",
     "react-device-detect": "^1.13.1",
@@ -19,7 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "node -p 'process.env' && CI=false react-scripts build && echo '/* /index.html 200' | cat >build/_redirects",
+    "build": "CI=false react-scripts build && echo '/* /index.html 200' | cat >build/_redirects",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

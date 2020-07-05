@@ -2,9 +2,12 @@ import React from "react";
 import { createGlobalStyle } from "styled-components";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import ReactGA from "react-ga";
+import dotenv from "dotenv";
 
 import About from "./pages/About";
 import Unavailable from "./pages/Unavailable";
+
+dotenv.config();
 
 const App = () => {
   ReactGA.initialize("UA-129588106-2");
