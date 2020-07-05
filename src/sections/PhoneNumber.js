@@ -68,7 +68,7 @@ export const Content = styled.input`
   border-bottom: 2px #000 solid;
   border-radius: 0;
   padding: 10px 0;
-  font-family: "JejuMyeongjo";
+  font-family: "Jeju Myeongjo";
 
   &:focus {
     outline: none;

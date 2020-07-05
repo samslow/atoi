@@ -1,6 +1,10 @@
-@font-face {
+/* @font-face {
   src: url(./assets/fonts/JejuMyeongjoOTF.otf) format("openType");
   font-family: "JejuMyeongjo";
+} */
+@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+.jejumyeongjo * {
+  font-family: "Jeju Myeongjo", serif;
 }
 body {
   margin: 0;
@@ -9,7 +13,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "JejuMyeongjo";
+  font-family: "Jeju Myeongjo";
 }
 
 ::-webkit-scrollbar {
