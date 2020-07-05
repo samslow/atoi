@@ -19,7 +19,7 @@ const Container = styled.div`
   flex-direction: row;
   align-items: center;
   height: 10px;
-  padding: 30px 5%;
+  padding: 60px 5% 30px 5%;
 `;
 
 const IndexText = styled.p`

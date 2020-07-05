@@ -331,9 +331,10 @@ const Section = styled.section`
 
 const Buttons = styled.div`
   display: flex;
+  position: absolute;
   justify-content: flex-end;
-  padding-bottom: 10%;
-  margin-right: 10%;
+  bottom: 15%;
+  right: 10%;
   border: #000;
 `;
 
