@@ -4,7 +4,7 @@ import styled from "styled-components";
 import ProgressBox from "../components/ProgressBox";
 import { TextBox, Title, P } from "./Intro";
 
-const Name = ({ value, onChange }) => {
+const Name = ({ value, onChange, onSubmit }) => {
   return (
     <Container>
       <ProgressBox index={"01"} percent={20} />
@@ -21,6 +21,12 @@ const Name = ({ value, onChange }) => {
           placeholder={"이름을 입력해 주세요"}
           value={value}
           onChange={(event) => onChange(event.target.value)}
+          onKeyUp={(e) => {
+            if (e.keyCode === 13) {
+              // When input Enter key
+              onSubmit();
+            }
+          }}
           required
         />
       </InputBox>
@@ -46,6 +52,7 @@ const Content = styled.input`
   border-bottom: 2px #000 solid;
   border-radius: 0;
   padding: 10px 0;
+  font-family: "JejuMyeongjo";
 
   &:focus {
     outline: none;

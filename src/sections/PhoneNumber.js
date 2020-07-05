@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import ProgressBox from "../components/ProgressBox";
 
-const PhoneNumber = ({ value, onChange }) => {
+const PhoneNumber = ({ value, onChange, onSubmit }) => {
   return (
     <Container>
       <ProgressBox index={"03"} percent={60} />
@@ -16,10 +16,16 @@ const PhoneNumber = ({ value, onChange }) => {
       </Title>
       <ContentsBox>
         <Content
-          type="number"
+          type="text"
           placeholder={"핸드폰 번호를 입력해 주세요"}
           value={value}
           onChange={(event) => onChange(event.target.value)}
+          onKeyUp={(e) => {
+            if (e.keyCode === 13) {
+              // When input Enter key
+              onSubmit();
+            }
+          }}
           required
         />
       </ContentsBox>
@@ -27,28 +33,26 @@ const PhoneNumber = ({ value, onChange }) => {
   );
 };
 
-const Container = styled.div`
+export const Container = styled.div`
   width: 100%;
   height: 100%;
 `;
 
-const TextBox = styled.div`
+export const TextBox = styled.div`
   padding-left: 5%;
-  flex-direction: row;
   flex: 1;
 `;
 
-const Title = styled.div`
+export const Title = styled.div`
   display: flex;
-  flex-direction: row;
 `;
 
-const P = styled.p`
+export const P = styled.p`
   margin: 10px 0;
   font-size: 60px;
 `;
 
-const ContentsBox = styled.div`
+export const ContentsBox = styled.div`
   height: 25vh;
   margin: 0 5%;
   padding: 5% 0 5% 10%;
@@ -56,7 +60,7 @@ const ContentsBox = styled.div`
   overflow: hidden;
 `;
 
-const Content = styled.input`
+export const Content = styled.input`
   width: 100%;
   font-size: 20px;
   background-color: transparent;
@@ -64,6 +68,7 @@ const Content = styled.input`
   border-bottom: 2px #000 solid;
   border-radius: 0;
   padding: 10px 0;
+  font-family: "JejuMyeongjo";
 
   &:focus {
     outline: none;
