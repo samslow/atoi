@@ -1,4 +1,5 @@
 import firebase from "firebase/app";
+import "firebase/analytics";
 import "firebase/firestore";
 
 const config = {
@@ -13,6 +14,7 @@ const config = {
 };
 
 firebase.initializeApp(config);
+firebase.analytics();
 
 const firestore = firebase.firestore();
 
