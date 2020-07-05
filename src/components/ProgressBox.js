@@ -16,10 +16,9 @@ const ProgressBox = ({ index, percent }) => {
 const Container = styled.div`
   flex: 1;
   display: flex;
-  flex-direction: row;
   align-items: center;
   height: 10px;
-  padding: 60px 5% 30px 5%;
+  padding: 30px 5%;
 `;
 
 const IndexText = styled.p`

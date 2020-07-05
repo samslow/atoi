@@ -313,6 +313,7 @@ const About = () => {
 
 const Container = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
   position: absolute;
   overflow: auto;
