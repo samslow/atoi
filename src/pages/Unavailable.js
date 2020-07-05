@@ -63,7 +63,7 @@ const ContentsBox = styled.div`
 
 const Sentence = styled.span`
   font-size: ${isMobile ? "13" : "18"}px;
-  line-height: 30px;
+  line-height: ${isMobile ? "20" : "30"}px;
 `;
 
 export default Unavailable;
