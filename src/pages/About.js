@@ -77,7 +77,7 @@ const About = () => {
     const element = ContainerRef.current;
     const snapElement = new ScrollSnap(element, {
       snapDestinationY: "100%",
-      timeout: 3000,
+      timeout: 0,
     });
 
     snapElement.bind();
