@@ -1,7 +1,6 @@
-# Atoi | 아투와
-
 <div align="center">
   <img src="https://atoi.netlify.app/thumb_atoi.png" />
+  <h1> À toi | 아투와</h1>
 </div>
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/34aeccb5-8fe0-44ab-9814-84176d93476c/deploy-status)](https://app.netlify.com/sites/atoi/deploys)
