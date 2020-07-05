@@ -1,9 +1,16 @@
 import React from "react";
-import styled from "styled-components";
 
 import ProgressBox from "../components/ProgressBox";
+import {
+  Container,
+  TextBox,
+  Title,
+  P,
+  ContentsBox,
+  Content,
+} from "./PhoneNumber";
 
-const Address = ({ value, onChange }) => {
+const Address = ({ value, onChange, onSubmit }) => {
   return (
     <Container>
       <ProgressBox index={"04"} percent={80} />
@@ -20,53 +27,16 @@ const Address = ({ value, onChange }) => {
           placeholder={"우편을 받을 주소를 입력해 주세요"}
           value={value}
           onChange={(event) => onChange(event.target.value)}
+          onKeyUp={(e) => {
+            if (e.keyCode === 13) {
+              // When input Enter key
+              onSubmit();
+            }
+          }}
         />
       </ContentsBox>
     </Container>
   );
 };
-
-const Container = styled.div`
-  width: 100%;
-  height: 100%;
-`;
-
-const TextBox = styled.div`
-  padding-left: 5%;
-  flex-direction: row;
-  flex: 1;
-`;
-
-const Title = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const P = styled.p`
-  margin: 10px 0;
-  font-size: 60px;
-`;
-
-const ContentsBox = styled.div`
-  height: 25vh;
-  margin: 0 5%;
-  padding: 5% 0 5% 10%;
-  overflow-y: scroll;
-  overflow: hidden;
-`;
-
-const Content = styled.input`
-  width: 100%;
-  font-size: 20px;
-  background-color: transparent;
-  border: none;
-  border-bottom: 2px #000 solid;
-  border-radius: 0;
-  padding: 10px 0;
-
-  &:focus {
-    outline: none;
-  }
-`;
 
 export default Address;
